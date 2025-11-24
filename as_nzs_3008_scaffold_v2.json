@@ -17,7 +17,6 @@
       "BURIED_DIRECT",
       "UNDERGROUND_DUCT_SAME",
       "UNDERGROUND_DUCT_SEPARATE"
-      
     ],
     "insulation_system": [
       "PVC_V75",
@@ -52,7 +51,16 @@
       "BARE_SINGLE_CORE_MIMS_CABLES_WITH_COPPER_CONDUCTORS"
     ],
     "arrangement": [
-      
+      "UNENCLOSED_SPACED",
+      "UNENCLOSED_SPACED_FROM_SURFACE",
+      "UNENCLOSED_TOUCHING",
+      "UNENCLOSED_EXPOSED_TO_SUN",
+      "ENCLOSED_IN_AIR",
+      "THERMAL_INSULATION_PARTIAL",
+      "THERMAL_INSULATION_COMPLETE",
+      "BURIED_DIRECT",
+      "UNDERGROUND_DUCT_SAME",
+      "UNDERGROUND_DUCT_SEPARATE"
     ],
     "conductor_material": ["CU", "AL"],
     "conductor_type": ["SOLID", "STRANDED", "FLEXIBLE", "ANY"],
@@ -2010,61 +2018,836 @@
     }  
   ],
   
-  "derating_grouping": [
+  "derating_rating_factors": [
     {
-      "id": "DG_T22_BUNCHED_ENCLOSURE",
       "table_id": "T22",
-      "scenario": "ENCLOSED_OR_BUNCHED_ON_SURFACE",
-      "axis": ["loaded_circuits_count"],
-      "entries": [
-        { "loaded_circuits_count": 2, "factor": 0.8 },
-        { "loaded_circuits_count": 3, "factor": 0.7 }
-      ],
-      "notes": "Use T22/T23/T24 depending on geometry (surface vs tray vs ladder)."
+      "title": "Derating Factors for Bunched Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Single-core and Multicore",
+      "installation_conditions": "In Air or in Wiring Enclosures",
+      "columns": {
+        "C1": { "circuits": "1" },
+        "C2": { "circuits": "2" },
+        "C3": { "circuits": "3" },
+        "C4": { "circuits": "4" },
+        "C5": { "circuits": "5" },
+        "C6": { "circuits": "6" },
+        "C7": { "circuits": "7" },
+        "C8": { "circuits": "8" },
+        "C9": { "circuits": "9" },
+        "C10": { "circuits": "10" },
+        "C11": { "circuits": "12" },
+        "C12": { "circuits": "14" },
+        "C13": { "circuits": "16" },
+        "C14": { "circuits": "18" },
+        "C15": { "circuits": "20 or more" }
+      },
+      "rows": [
+        {
+          "item_no": "1",
+          "arrangement": "Bunched in air",
+          "values": { "C1": 1.0, "C2": 0.87, "C3": 0.75, "C4": 0.72, "C5": 0.7, "C6": 0.67, "C7": null, "C8": null, "C9": null, "C10": null, "C11": null, "C12": null, "C13": null, "C14": null, "C15": null }
+        },
+        {
+          "item_no": "2",
+          "arrangement": "Bunched on a surface or enclosed",
+          "values": { "C1": 1.0, "C2": 0.8, "C3": 0.7, "C4": 0.65, "C5": 0.6, "C6": 0.57, "C7": 0.54, "C8": 0.52, "C9": 0.5, "C10": 0.48, "C11": 0.45, "C12": 0.43, "C13": 0.41, "C14": 0.39, "C15": 0.38 }
+        },
+        {
+          "item_no": "3",
+          "arrangement": "Single layer on wall or floor - Touching",
+          "values": { "C1": 1.0, "C2": 0.85, "C3": 0.79, "C4": 0.75, "C5": 0.73, "C6": 0.72, "C7": 0.72, "C8": 0.71, "C9": 0.7, "C10": 0.7, "C11": 0.7, "C12": 0.7, "C13": 0.7, "C14": 0.7, "C15": 0.7 }
+        },
+        {
+          "item_no": "4",
+          "arrangement": "Single layer on wall or floor - Spaced (see Notes 5 and 6)",
+          "values": { "C1": 1.0, "C2": 0.94, "C3": 0.9, "C4": 0.9, "C5": 0.9, "C6": 0.9, "C7": 0.9, "C8": 0.9, "C9": 0.9, "C10": 0.9, "C11": 0.9, "C12": 0.9, "C13": 0.9, "C14": 0.9, "C15": 0.9 }
+        },
+        {
+          "item_no": "5",
+          "arrangement": "Single layer under ceiling - Touching",
+          "values": { "C1": 0.95, "C2": 0.81, "C3": 0.72, "C4": 0.68, "C5": 0.66, "C6": 0.64, "C7": 0.63, "C8": 0.62, "C9": 0.61, "C10": 0.61, "C11": 0.61, "C12": 0.61, "C13": 0.61, "C14": 0.61, "C15": 0.61 }
+        },
+        {
+          "item_no": "6",
+          "arrangement": "Single layer under ceiling - Spaced (see Notes 5 and 6)",
+          "values": { "C1": 0.95, "C2": 0.85, "C3": 0.85, "C4": 0.85, "C5": 0.85, "C6": 0.85, "C7": 0.85, "C8": 0.85, "C9": 0.85, "C10": 0.85, "C11": 0.85, "C12": 0.85, "C13": 0.85, "C14": 0.85, "C15": 0.85 }
+        }
+      ]
     },
     {
-      "id": "DG_T23_TRAY_SPACING",
       "table_id": "T23",
-      "scenario": "TRAY_LADDER_RACK_HANGER",
-      "axis": ["touching_or_spacing_class", "rows_or_tiers"],
-      "entries": [
-        { "touching_or_spacing_class": "TOUCHING", "rows_or_tiers": 1, "factor": 0.85 }
+      "title": "Derating Factors for Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Single-core",
+      "installation_conditions": "In trays, racks, cleats or other supports in air",
+      "columns": {
+        "C1": { "circuits_per_tier_or_row": "1" },
+        "C2": { "circuits_per_tier_or_row": "2" },
+        "C3": { "circuits_per_tier_or_row": "3" }
+      },
+      "rows": [
+        {
+          "item_no": "1",
+          "installation": "Unperforated trays (Touching)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.95, "C2": 0.85, "C3": 0.84 }
+        },
+        {
+          "item_no": "2",
+          "installation": "Unperforated trays (Touching)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.92, "C2": 0.83, "C3": 0.79 }
+        },
+        {
+          "item_no": "3",
+          "installation": "Unperforated trays (Touching)",
+          "tiers": "3",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.91, "C2": 0.82, "C3": 0.76 }
+        },
+        {
+          "item_no": "4",
+          "installation": "Perforated trays (Touching)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.97, "C2": 0.89, "C3": 0.87 }
+        },
+        {
+          "item_no": "5",
+          "installation": "Perforated trays (Touching)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.94, "C2": 0.85, "C3": 0.81 }
+        },
+        {
+          "item_no": "6",
+          "installation": "Perforated trays (Touching)",
+          "tiers": "3",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.93, "C2": 0.84, "C3": 0.79 }
+        },
+        {
+          "item_no": "7",
+          "installation": "Ladder supports, racks and cleats (Touching)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 1.0, "C2": 0.95, "C3": 0.94 }
+        },
+        {
+          "item_no": "8",
+          "installation": "Ladder supports, racks and cleats (Touching)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.95, "C2": 0.9, "C3": 0.88 }
+        },
+        {
+          "item_no": "9",
+          "installation": "Ladder supports, racks and cleats (Touching)",
+          "tiers": "3",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.95, "C2": 0.89, "C3": 0.85 }
+        },
+        {
+          "item_no": "10",
+          "installation": "Vertical perforated trays (Touching)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in vertical formation",
+          "values": { "C1": 0.94, "C2": 0.85, "C3": null }
+        },
+        {
+          "item_no": "11",
+          "installation": "Vertical perforated trays (Touching)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in vertical formation",
+          "values": { "C1": 0.92, "C2": 0.83, "C3": null }
+        },
+        {
+          "item_no": "12",
+          "installation": "Unperforated trays (Spaced)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.95, "C2": 0.95, "C3": 0.94 }
+        },
+        {
+          "item_no": "13",
+          "installation": "Unperforated trays (Spaced)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.92, "C2": 0.91, "C3": 0.87 }
+        },
+        {
+          "item_no": "14",
+          "installation": "Unperforated trays (Spaced)",
+          "tiers": "3",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.91, "C2": 0.9, "C3": 0.85 }
+        },
+        {
+          "item_no": "15",
+          "installation": "Perforated trays (Spaced)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.97, "C2": 0.97, "C3": 0.96 }
+        },
+        {
+          "item_no": "16",
+          "installation": "Perforated trays (Spaced)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.94, "C2": 0.93, "C3": 0.89 }
+        },
+        {
+          "item_no": "17",
+          "installation": "Perforated trays (Spaced)",
+          "tiers": "3",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.93, "C2": 0.92, "C3": 0.86 }
+        },
+        {
+          "item_no": "18",
+          "installation": "Ladder supports (Spaced)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 1.0, "C2": 1.0, "C3": 1.0 }
+        },
+        {
+          "item_no": "19",
+          "installation": "Ladder supports (Spaced)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.95, "C2": 0.95, "C3": 0.93 }
+        },
+        {
+          "item_no": "20",
+          "installation": "Ladder supports (Spaced)",
+          "tiers": "3",
+          "arrangement": "2 or 3 cables in horizontal formation",
+          "values": { "C1": 0.95, "C2": 0.94, "C3": 0.9 }
+        },
+        {
+          "item_no": "21",
+          "installation": "Vertical perforated trays (Spaced)",
+          "tiers": "1",
+          "arrangement": "2 or 3 cables in vertical formation",
+          "values": { "C1": 1.0, "C2": 0.91, "C3": 0.89 }
+        },
+        {
+          "item_no": "22",
+          "installation": "Vertical perforated trays (Spaced)",
+          "tiers": "2",
+          "arrangement": "2 or 3 cables in vertical formation",
+          "values": { "C1": 1.0, "C2": 0.9, "C3": 0.86 }
+        }
       ]
     },
     {
-      "id": "DG_T25_BURIED_GROUP",
-      "table_id": "T25",
-      "scenario": "BURIED_DIRECT_GROUPING",
-      "axis": ["separation_m"],
-      "entries": [
-        { "separation_m": 0.1, "factor": 0.7 },
-        { "separation_m": 2.0, "factor": 1.0 }
-      ]
-    }
-  ],
-  "derating_ambient": [
-    {
-      "id": "DA_T27_AIR",
-      "table_id": "T27_AIR",
-      "medium": "AIR",
-      "axis": ["ambient_C"],
-      "entries": [
-        { "ambient_C": 30, "factor": 1.08 },
-        { "ambient_C": 40, "factor": 1.00 },
-        { "ambient_C": 50, "factor": 0.89 }
+      "table_id": "T24",
+      "title": "Derating Factors for Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Multicore",
+      "installation_conditions": "In trays, racks, cleats or other supports in air",
+      "columns": {
+        "C1": { "number_of_cables": "1" },
+        "C2": { "number_of_cables": "2" },
+        "C3": { "number_of_cables": "3" },
+        "C4": { "number_of_cables": "4" },
+        "C5": { "number_of_cables": "6" },
+        "C6": { "number_of_cables": "9" }
+      },
+      "rows": [
+        {
+          "item_no": "1",
+          "installation": "Unperforated trays (Touching)",
+          "tiers": "1",
+          "values": { "C1": 0.97, "C2": 0.85, "C3": 0.78, "C4": 0.75, "C5": 0.71, "C6": 0.68 }
+        },
+        {
+          "item_no": "2",
+          "installation": "Unperforated trays (Touching)",
+          "tiers": "2",
+          "values": { "C1": 0.97, "C2": 0.84, "C3": 0.76, "C4": 0.73, "C5": 0.68, "C6": 0.63 }
+        },
+        {
+          "item_no": "3",
+          "installation": "Unperforated trays (Touching)",
+          "tiers": "3",
+          "values": { "C1": 0.97, "C2": 0.83, "C3": 0.75, "C4": 0.72, "C5": 0.66, "C6": 0.61 }
+        },
+        {
+          "item_no": "4",
+          "installation": "Unperforated trays (Spaced)",
+          "tiers": "1",
+          "values": { "C1": 0.97, "C2": 0.96, "C3": 0.94, "C4": 0.93, "C5": 0.90, "C6": null }
+        },
+        {
+          "item_no": "5",
+          "installation": "Unperforated trays (Spaced)",
+          "tiers": "2",
+          "values": { "C1": 0.97, "C2": 0.95, "C3": 0.92, "C4": 0.90, "C5": 0.86, "C6": null }
+        },
+        {
+          "item_no": "6",
+          "installation": "Unperforated trays (Spaced)",
+          "tiers": "3",
+          "values": { "C1": 0.97, "C2": 0.94, "C3": 0.91, "C4": 0.89, "C5": 0.84, "C6": null }
+        },
+        {
+          "item_no": "7",
+          "installation": "Perforated trays (Touching)",
+          "tiers": "1",
+          "values": { "C1": 1.0, "C2": 0.88, "C3": 0.82, "C4": 0.78, "C5": 0.76, "C6": 0.73 }
+        },
+        {
+          "item_no": "8",
+          "installation": "Perforated trays (Touching)",
+          "tiers": "2",
+          "values": { "C1": 1.0, "C2": 0.87, "C3": 0.80, "C4": 0.76, "C5": 0.73, "C6": 0.68 }
+        },
+        {
+          "item_no": "9",
+          "installation": "Perforated trays (Touching)",
+          "tiers": "3",
+          "values": { "C1": 1.0, "C2": 0.86, "C3": 0.79, "C4": 0.75, "C5": 0.71, "C6": 0.66 }
+        },
+        {
+          "item_no": "10",
+          "installation": "Perforated trays (Spaced)",
+          "tiers": "1",
+          "values": { "C1": 1.0, "C2": 1.0, "C3": 0.98, "C4": 0.95, "C5": 0.91, "C6": null }
+        },
+        {
+          "item_no": "11",
+          "installation": "Perforated trays (Spaced)",
+          "tiers": "2",
+          "values": { "C1": 1.0, "C2": 0.99, "C3": 0.96, "C4": 0.92, "C5": 0.87, "C6": null }
+        },
+        {
+          "item_no": "12",
+          "installation": "Perforated trays (Spaced)",
+          "tiers": "3",
+          "values": { "C1": 1.0, "C2": 0.98, "C3": 0.95, "C4": 0.91, "C5": 0.85, "C6": null }
+        },
+        {
+          "item_no": "13",
+          "installation": "Ladder supports, racks and cleats (Touching)",
+          "tiers": "1",
+          "values": { "C1": 1.0, "C2": 0.87, "C3": 0.82, "C4": 0.80, "C5": 0.79, "C6": 0.78 }
+        },
+        {
+          "item_no": "14",
+          "installation": "Ladder supports, racks and cleats (Touching)",
+          "tiers": "2",
+          "values": { "C1": 1.0, "C2": 0.86, "C3": 0.80, "C4": 0.78, "C5": 0.76, "C6": 0.73 }
+        },
+        {
+          "item_no": "15",
+          "installation": "Ladder supports, racks and cleats (Touching)",
+          "tiers": "3",
+          "values": { "C1": 1.0, "C2": 0.85, "C3": 0.79, "C4": 0.76, "C5": 0.73, "C6": 0.70 }
+        },
+        {
+          "item_no": "16",
+          "installation": "Ladder supports, racks and cleats (Spaced)",
+          "tiers": "1",
+          "values": { "C1": 1.0, "C2": 1.0, "C3": 1.0, "C4": 1.0, "C5": 1.0, "C6": null }
+        },
+        {
+          "item_no": "17",
+          "installation": "Ladder supports, racks and cleats (Spaced)",
+          "tiers": "2",
+          "values": { "C1": 1.0, "C2": 0.99, "C3": 0.98, "C4": 0.97, "C5": 0.96, "C6": null }
+        },
+        {
+          "item_no": "18",
+          "installation": "Ladder supports, racks and cleats (Spaced)",
+          "tiers": "3",
+          "values": { "C1": 1.0, "C2": 0.98, "C3": 0.97, "C4": 0.96, "C5": 0.93, "C6": null }
+        },
+        {
+          "item_no": "19",
+          "installation": "Vertical perforated trays (Touching)",
+          "tiers": "1",
+          "values": { "C1": 1.0, "C2": 0.88, "C3": 0.82, "C4": 0.77, "C5": 0.73, "C6": 0.72 }
+        },
+        {
+          "item_no": "20",
+          "installation": "Vertical perforated trays (Touching)",
+          "tiers": "2",
+          "values": { "C1": 1.0, "C2": 0.88, "C3": 0.81, "C4": 0.76, "C5": 0.72, "C6": 0.70 }
+        },
+        {
+          "item_no": "21",
+          "installation": "Vertical perforated trays (Spaced)",
+          "tiers": "1",
+          "values": { "C1": 1.0, "C2": 0.91, "C3": 0.89, "C4": 0.88, "C5": 0.87, "C6": null }
+        },
+        {
+          "item_no": "22",
+          "installation": "Vertical perforated trays (Spaced)",
+          "tiers": "2",
+          "values": { "C1": 1.0, "C2": 0.91, "C3": 0.88, "C4": 0.87, "C5": 0.86, "C6": null }
+        }
       ]
     },
     {
-      "id": "DA_T27_SOIL",
-      "table_id": "T27_SOIL",
-      "medium": "SOIL",
-      "axis": ["soil_C"],
-      "entries": [
-        { "soil_C": 15, "factor": 1.06 },
-        { "soil_C": 25, "factor": 1.00 }
+      "table_id": "T25(1)",
+      "title": "Derating Factors for Groups of Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Single-core",
+      "installation_conditions": "Buried Direct in Ground",
+      "columns": {
+        "C1": { "condition": "Touching", "formation": "Trefoil" },
+        "C2": { "condition": "Touching", "formation": "Laid flat" },
+        "C3": { "condition": "Spaced", "distance_m": "0.15" },
+        "C4": { "condition": "Spaced", "distance_m": "0.30" },
+        "C5": { "condition": "Spaced", "distance_m": "0.45" },
+        "C6": { "condition": "Spaced", "distance_m": "0.60" }
+      },
+      "rows": [
+        {
+          "number_of_circuits": "2",
+          "values": { "C1": 0.78, "C2": 0.81, "C3": 0.83, "C4": 0.88, "C5": 0.91, "C6": 0.93 }
+        },
+        {
+          "number_of_circuits": "3",
+          "values": { "C1": 0.66, "C2": 0.70, "C3": 0.73, "C4": 0.79, "C5": 0.84, "C6": 0.87 }
+        },
+        {
+          "number_of_circuits": "4",
+          "values": { "C1": 0.61, "C2": 0.64, "C3": 0.68, "C4": 0.74, "C5": 0.81, "C6": 0.85 }
+        },
+        {
+          "number_of_circuits": "5",
+          "values": { "C1": 0.56, "C2": 0.60, "C3": 0.64, "C4": 0.73, "C5": 0.79, "C6": 0.83 }
+        },
+        {
+          "number_of_circuits": "6",
+          "values": { "C1": 0.53, "C2": 0.57, "C3": 0.61, "C4": 0.71, "C5": 0.78, "C6": 0.82 }
+        },
+        {
+          "number_of_circuits": "7",
+          "values": { "C1": 0.50, "C2": 0.54, "C3": 0.59, "C4": 0.69, "C5": 0.76, "C6": 0.82 }
+        },
+        {
+          "number_of_circuits": "8",
+          "values": { "C1": 0.49, "C2": 0.53, "C3": 0.57, "C4": 0.68, "C5": 0.76, "C6": 0.81 }
+        },
+        {
+          "number_of_circuits": "9",
+          "values": { "C1": 0.47, "C2": 0.51, "C3": 0.56, "C4": 0.67, "C5": 0.75, "C6": 0.81 }
+        },
+        {
+          "number_of_circuits": "10",
+          "values": { "C1": 0.46, "C2": 0.50, "C3": 0.55, "C4": 0.67, "C5": 0.75, "C6": 0.80 }
+        },
+        {
+          "number_of_circuits": "11",
+          "values": { "C1": 0.44, "C2": 0.49, "C3": 0.54, "C4": 0.66, "C5": 0.74, "C6": 0.80 }
+        },
+        {
+          "number_of_circuits": "12",
+          "values": { "C1": 0.43, "C2": 0.48, "C3": 0.53, "C4": 0.66, "C5": 0.74, "C6": 0.80 }
+        }
+      ]
+    },
+    {
+      "table_id": "T25(2)",
+      "title": "Derating Factors for Groups of Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Multicore",
+      "installation_conditions": "Buried Direct in Ground",
+      "columns": {
+        "C1": { "condition": "Touching" },
+        "C2": { "condition": "Spaced", "distance_m": "0.15" },
+        "C3": { "condition": "Spaced", "distance_m": "0.30" },
+        "C4": { "condition": "Spaced", "distance_m": "0.45" },
+        "C5": { "condition": "Spaced", "distance_m": "0.60" }
+      },
+      "rows": [
+        {
+          "number_of_cables": "2",
+          "values": { "C1": 0.81, "C2": 0.87, "C3": 0.91, "C4": 0.93, "C5": 0.95 }
+        },
+        {
+          "number_of_cables": "3",
+          "values": { "C1": 0.7, "C2": 0.78, "C3": 0.84, "C4": 0.88, "C5": 0.9 }
+        },
+        {
+          "number_of_cables": "4",
+          "values": { "C1": 0.63, "C2": 0.74, "C3": 0.81, "C4": 0.86, "C5": 0.89 }
+        },
+        {
+          "number_of_cables": "5",
+          "values": { "C1": 0.59, "C2": 0.7, "C3": 0.78, "C4": 0.84, "C5": 0.87 }
+        },
+        {
+          "number_of_cables": "6",
+          "values": { "C1": 0.55, "C2": 0.68, "C3": 0.77, "C4": 0.83, "C5": 0.87 }
+        },
+        {
+          "number_of_cables": "7",
+          "values": { "C1": 0.52, "C2": 0.66, "C3": 0.75, "C4": 0.82, "C5": 0.86 }
+        },
+        {
+          "number_of_cables": "8",
+          "values": { "C1": 0.5, "C2": 0.64, "C3": 0.75, "C4": 0.81, "C5": 0.86 }
+        },
+        {
+          "number_of_cables": "9",
+          "values": { "C1": 0.48, "C2": 0.63, "C3": 0.74, "C4": 0.81, "C5": 0.85 }
+        },
+        {
+          "number_of_cables": "10",
+          "values": { "C1": 0.47, "C2": 0.62, "C3": 0.73, "C4": 0.8, "C5": 0.85 }
+        },
+        {
+          "number_of_cables": "11",
+          "values": { "C1": 0.45, "C2": 0.61, "C3": 0.73, "C4": 0.8, "C5": 0.85 }
+        },
+        {
+          "number_of_cables": "12",
+          "values": { "C1": 0.44, "C2": 0.6, "C3": 0.72, "C4": 0.8, "C5": 0.84 }
+        }
+      ]
+    },
+    {
+      "table_id": "T26(1)",
+      "title": "Derating Factors for Groups of Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Single-core",
+      "installation_conditions": "In underground wiring enclosures - enclosed separately",
+      "columns": {
+        "C1": { "condition": "Touching" },
+        "C2": { "condition": "Spaced", "distance_m": "0.45" },
+        "C3": { "condition": "Spaced", "distance_m": "0.60" }
+      },
+      "rows": [
+        {
+          "number_of_circuits": "2",
+          "values": { "C1": 0.87, "C2": 0.91, "C3": 0.93 }
+        },
+        {
+          "number_of_circuits": "3",
+          "values": { "C1": 0.78, "C2": 0.84, "C3": 0.87 }
+        },
+        {
+          "number_of_circuits": "4",
+          "values": { "C1": 0.74, "C2": 0.81, "C3": 0.85 }
+        },
+        {
+          "number_of_circuits": "5",
+          "values": { "C1": 0.70, "C2": 0.79, "C3": 0.83 }
+        },
+        {
+          "number_of_circuits": "6",
+          "values": { "C1": 0.69, "C2": 0.78, "C3": 0.82 }
+        },
+        {
+          "number_of_circuits": "7",
+          "values": { "C1": 0.67, "C2": 0.76, "C3": 0.82 }
+        },
+        {
+          "number_of_circuits": "8",
+          "values": { "C1": 0.66, "C2": 0.76, "C3": 0.81 }
+        },
+        {
+          "number_of_circuits": "9",
+          "values": { "C1": 0.65, "C2": 0.75, "C3": 0.81 }
+        },
+        {
+          "number_of_circuits": "10",
+          "values": { "C1": 0.64, "C2": 0.75, "C3": 0.80 }
+        },
+        {
+          "number_of_circuits": "11",
+          "values": { "C1": 0.63, "C2": 0.74, "C3": 0.80 }
+        },
+        {
+          "number_of_circuits": "12",
+          "values": { "C1": 0.63, "C2": 0.74, "C3": 0.80 }
+        }
+      ]
+    },
+    {
+      "table_id": "T26(2)",
+      "title": "Derating Factors for Groups of Circuits",
+      "variance": "DERATING_FACTOR",
+      "frequency": "N/A",
+      "cable_type": "Single-core or Multicore",
+      "installation_conditions": "In underground wiring enclosures—Multicore cables enclosed separately or more than one single-core cable per wiring enclosure",
+      "columns": {
+        "C1": { "condition": "Touching" },
+        "C2": { "condition": "Spaced", "distance_m": "0.30" },
+        "C3": { "condition": "Spaced", "distance_m": "0.45" },
+        "C4": { "condition": "Spaced", "distance_m": "0.60" }
+      },
+      "rows": [
+        {
+          "number_of_circuits": "2",
+          "values": { "C1": 0.9, "C2": 0.93, "C3": 0.95, "C4": 0.96 }
+        },
+        {
+          "number_of_circuits": "3",
+          "values": { "C1": 0.83, "C2": 0.88, "C3": 0.91, "C4": 0.93 }
+        },
+        {
+          "number_of_circuits": "4",
+          "values": { "C1": 0.79, "C2": 0.85, "C3": 0.89, "C4": 0.92 }
+        },
+        {
+          "number_of_circuits": "5",
+          "values": { "C1": 0.75, "C2": 0.83, "C3": 0.88, "C4": 0.91 }
+        },
+        {
+          "number_of_circuits": "6",
+          "values": { "C1": 0.73, "C2": 0.82, "C3": 0.87, "C4": 0.9 }
+        },
+        {
+          "number_of_circuits": "7",
+          "values": { "C1": 0.71, "C2": 0.81, "C3": 0.86, "C4": 0.89 }
+        },
+        {
+          "number_of_circuits": "8",
+          "values": { "C1": 0.7, "C2": 0.8, "C3": 0.85, "C4": 0.89 }
+        },
+        {
+          "number_of_circuits": "9",
+          "values": { "C1": 0.68, "C2": 0.79, "C3": 0.85, "C4": 0.89 }
+        },
+        {
+          "number_of_circuits": "10",
+          "values": { "C1": 0.67, "C2": 0.79, "C3": 0.85, "C4": 0.89 }
+        },
+        {
+          "number_of_circuits": "11",
+          "values": { "C1": 0.66, "C2": 0.78, "C3": 0.84, "C4": 0.88 }
+        },
+        {
+          "number_of_circuits": "12",
+          "values": { "C1": 0.66, "C2": 0.78, "C3": 0.84, "C4": 0.88 }
+        }
+      ]
+    },
+    {
+      "table_id": "T27(1)",
+      "title": "Rating Factors",
+      "variance": "AIR AND CONCRETE SLAB AMBIENT TEMPERATURES",
+      "installation_conditions": "Cables in air or heated concrete slabs",
+      "columns": {
+        "C1": { "ambient_temperature_c": "15" },
+        "C2": { "ambient_temperature_c": "20" },
+        "C3": { "ambient_temperature_c": "25" },
+        "C4": { "ambient_temperature_c": "30" },
+        "C5": { "ambient_temperature_c": "35" },
+        "C6": { "ambient_temperature_c": "40" },
+        "C7": { "ambient_temperature_c": "45" },
+        "C8": { "ambient_temperature_c": "50" },
+        "C9": { "ambient_temperature_c": "55" },
+        "C10": { "ambient_temperature_c": "60" },
+        "C11": { "ambient_temperature_c": "65" },
+        "C12": { "ambient_temperature_c": "70" },
+        "C13": { "ambient_temperature_c": "75" },
+        "C14": { "ambient_temperature_c": "80" },
+        "C15": { "ambient_temperature_c": "85" },
+        "C16": { "ambient_temperature_c": "90" },
+        "C17": { "ambient_temperature_c": "100" },
+        "C18": { "ambient_temperature_c": "110" },
+        "C19": { "ambient_temperature_c": "120" },
+        "C20": { "ambient_temperature_c": "130" },
+        "C21": { "ambient_temperature_c": "140" }
+      },
+      "rows": [
+        {
+          "conductor_temperature_c": "150",
+          "values": { "C1": 1.11, "C2": 1.09, "C3": 1.07, "C4": 1.04, "C5": 1.02, "C6": 1.0, "C7": 0.98, "C8": 0.95, "C9": 0.93, "C10": 0.9, "C11": 0.88, "C12": 0.85, "C13": 0.83, "C14": 0.8, "C15": 0.77, "C16": 0.74, "C17": 0.69, "C18": 0.6, "C19": 0.52, "C20": 0.43, "C21": 0.3 }
+        },
+        {
+          "conductor_temperature_c": "110",
+          "values": { "C1": 1.16, "C2": 1.13, "C3": 1.1, "C4": 1.07, "C5": 1.04, "C6": 1.0, "C7": 0.96, "C8": 0.93, "C9": 0.89, "C10": 0.85, "C11": 0.8, "C12": 0.76, "C13": 0.71, "C14": 0.65, "C15": 0.6, "C16": 0.53, "C17": 0.38, "C18": null, "C19": null, "C20": null, "C21": null }
+        },
+        {
+          "conductor_temperature_c": "90",
+          "values": { "C1": 1.26, "C2": 1.2, "C3": 1.15, "C4": 1.1, "C5": 1.05, "C6": 1.0, "C7": 0.94, "C8": 0.88, "C9": 0.81, "C10": 0.73, "C11": 0.65, "C12": 0.57, "C13": 0.47, "C14": 0.34, "C15": 0.19, "C16": null, "C17": null, "C18": null, "C19": null, "C20": null, "C21": null }
+        },
+        {
+          "conductor_temperature_c": "80",
+          "values": { "C1": 1.31, "C2": 1.25, "C3": 1.19, "C4": 1.12, "C5": 1.06, "C6": 1.0, "C7": 0.92, "C8": 0.84, "C9": 0.76, "C10": 0.66, "C11": 0.56, "C12": 0.45, "C13": 0.27, "C14": null, "C15": null, "C16": null, "C17": null, "C18": null, "C19": null, "C20": null, "C21": null }
+        },
+        {
+          "conductor_temperature_c": "75",
+          "values": { "C1": 1.35, "C2": 1.28, "C3": 1.21, "C4": 1.14, "C5": 1.07, "C6": 1.0, "C7": 0.91, "C8": 0.82, "C9": 0.72, "C10": 0.6, "C11": 0.49, "C12": 0.37, "C13": null, "C14": null, "C15": null, "C16": null, "C17": null, "C18": null, "C19": null, "C20": null, "C21": null }
+        }
+      ]
+    },
+    {
+      "table_id": "T28(1)",
+      "title": "Rating Factors",
+      "variance": "DEPTH OF LAYING",
+      "frequency": "N/A",
+      "cable_type": "Single-core or Multicore",
+      "installation_conditions": "Buried direct in ground",
+      "columns": {
+        "C1": { "conductor_size_mm2": "Up to 50" },
+        "C2": { "conductor_size_mm2": "Above 50 up to 300" },
+        "C3": { "conductor_size_mm2": "Above 300" }
+      },
+      "rows": [
+        {
+          "depth_of_laying_m": "0.5",
+          "values": { "C1": 1.0, "C2": 1.0, "C3": 1.0 }
+        },
+        {
+          "depth_of_laying_m": "0.6",
+          "values": { "C1": 0.99, "C2": 0.98, "C3": 0.97 }
+        },
+        {
+          "depth_of_laying_m": "0.8",
+          "values": { "C1": 0.97, "C2": 0.96, "C3": 0.94 }
+        },
+        {
+          "depth_of_laying_m": "1.0",
+          "values": { "C1": 0.95, "C2": 0.94, "C3": 0.92 }
+        },
+        {
+          "depth_of_laying_m": "1.25",
+          "values": { "C1": 0.94, "C2": 0.92, "C3": 0.9 }
+        },
+        {
+          "depth_of_laying_m": "1.5",
+          "values": { "C1": 0.93, "C2": 0.91, "C3": 0.89 }
+        },
+        {
+          "depth_of_laying_m": "1.75",
+          "values": { "C1": 0.92, "C2": 0.89, "C3": 0.87 }
+        },
+        {
+          "depth_of_laying_m": "2.0",
+          "values": { "C1": 0.91, "C2": 0.88, "C3": 0.86 }
+        },
+        {
+          "depth_of_laying_m": "2.5",
+          "values": { "C1": 0.9, "C2": 0.87, "C3": 0.85 }
+        },
+        {
+          "depth_of_laying_m": "3.0 or more",
+          "values": { "C1": 0.89, "C2": 0.86, "C3": 0.83 }
+        }
+      ]
+    },
+    {
+      "table_id": "T28(2)",
+      "title": "Rating Factors",
+      "variance": "DEPTH OF LAYING",
+      "frequency": "N/A",
+      "cable_type": "Single-core or Multicore",
+      "installation_conditions": "In underground wiring enclosures",
+      "columns": {
+        "C1": { "cable_configuration": "Single-core" },
+        "C2": { "cable_configuration": "Multicore" }
+      },
+      "rows": [
+        {
+          "depth_of_laying_m": "0.5",
+          "values": { "C1": 1.0, "C2": 1.0 }
+        },
+        {
+          "depth_of_laying_m": "0.6",
+          "values": { "C1": 0.98, "C2": 0.99 }
+        },
+        {
+          "depth_of_laying_m": "0.8",
+          "values": { "C1": 0.95, "C2": 0.97 }
+        },
+        {
+          "depth_of_laying_m": "1.0",
+          "values": { "C1": 0.93, "C2": 0.96 }
+        },
+        {
+          "depth_of_laying_m": "1.25",
+          "values": { "C1": 0.9, "C2": 0.95 }
+        },
+        {
+          "depth_of_laying_m": "1.5",
+          "values": { "C1": 0.89, "C2": 0.94 }
+        },
+        {
+          "depth_of_laying_m": "1.75",
+          "values": { "C1": 0.88, "C2": 0.94 }
+        },
+        {
+          "depth_of_laying_m": "2.0",
+          "values": { "C1": 0.87, "C2": 0.93 }
+        },
+        {
+          "depth_of_laying_m": "2.5",
+          "values": { "C1": 0.86, "C2": 0.93 }
+        },
+        {
+          "depth_of_laying_m": "3.0 or more",
+          "values": { "C1": 0.85, "C2": 0.92 }
+        }
+      ]
+    },
+    {
+      "table_id": "T29",
+      "title": "Rating Factors",
+      "variance": "THERMAL RESISTIVITY OF THE SOIL",
+      "frequency": "N/A",
+      "cable_type": "Single-core or Multicore",
+      "installation_conditions": "Buried direct in ground and in underground wiring enclosures",
+      "columns": {
+        "C1": { "cable_arrangement": "Multicore cable buried direct" },
+        "C2": { "cable_arrangement": "Two or three single-core cables buried direct" },
+        "C3": { "cable_arrangement": "Multicore cable in a wiring enclosure" },
+        "C4": { "cable_arrangement": "Two single-core cables in a wiring enclosure" },
+        "C5": { "cable_arrangement": "Three single-core cables in a wiring enclosure" }
+      },
+      "rows": [
+        {
+          "thermal_resistivity_of_soil": "0.8",
+          "values": { "C1": 1.09, "C2": 1.16, "C3": 1.03, "C4": 1.06, "C5": 1.08 }
+        },
+        {
+          "thermal_resistivity_of_soil": "0.9",
+          "values": { "C1": 1.07, "C2": 1.11, "C3": 1.02, "C4": 1.04, "C5": 1.06 }
+        },
+        {
+          "thermal_resistivity_of_soil": "1.0",
+          "values": { "C1": 1.04, "C2": 1.07, "C3": 1.02, "C4": 1.03, "C5": 1.04 }
+        },
+        {
+          "thermal_resistivity_of_soil": "1.2",
+          "values": { "C1": 1.0, "C2": 1.0, "C3": 1.0, "C4": 1.0, "C5": 1.0 }
+        },
+        {
+          "thermal_resistivity_of_soil": "1.5",
+          "values": { "C1": 0.92, "C2": 0.9, "C3": 0.95, "C4": 0.94, "C5": 0.92 }
+        },
+        {
+          "thermal_resistivity_of_soil": "2.0",
+          "values": { "C1": 0.81, "C2": 0.8, "C3": 0.88, "C4": 0.86, "C5": 0.83 }
+        },
+        {
+          "thermal_resistivity_of_soil": "2.5",
+          "values": { "C1": 0.74, "C2": 0.72, "C3": 0.83, "C4": 0.8, "C5": 0.77 }
+        },
+        {
+          "thermal_resistivity_of_soil": "3.0",
+          "values": { "C1": 0.69, "C2": 0.66, "C3": 0.78, "C4": 0.75, "C5": 0.71 }
+        }
       ]
     }
   ],
+
   "reactance_tables": [
     {
       "table_id": "T30",
