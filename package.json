@@ -1,0 +1,49 @@
+{
+  "name": "cable-size-calculator-as3008",
+  "version": "1.0.0",
+  "description": "A comprehensive web-based cable sizing calculator implementing AS/NZS 3008 standards for electrical cable selection",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "start-node": "npx http-server -p 8000",
+    "start-php": "php -S localhost:8000",
+    "dev": "python -m http.server 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/cable-size-calculator-as3008.git"
+  },
+  "keywords": [
+    "electrical",
+    "cable-sizing",
+    "as-nzs-3008",
+    "electrical-engineering",
+    "cable-calculator",
+    "australian-standards",
+    "new-zealand-standards",
+    "electrical-installations",
+    "cable-selection",
+    "voltage-drop",
+    "current-rating",
+    "loop-impedance",
+    "short-circuit"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/cable-size-calculator-as3008/issues"
+  },
+  "homepage": "https://github.com/yourusername/cable-size-calculator-as3008#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
